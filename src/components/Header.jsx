@@ -2,16 +2,19 @@ import React from "react";
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center">
+    <header className="flex justify-between items-center mb-20">
       <div className="flex items-center gap-3">
-        <img src="../vite.svg" alt="logo" />
+        <img className="w-10" src="../logo.png" alt="logo" />
         <div>
-          <h3 className="text-2xl font-extrabold">Shaurma</h3>
+          <h3 className="text-2xl font-black">Shaurma</h3>
           <p>самая вкусная шаурма у нас</p>
         </div>
       </div>
-      <button className="bg-red-400 p-1 border-0 rounded-md cursor-pointer">
-        520p
+      <button className="bg-red-500 font-bold px-4.5 py-2.5 border-0 rounded-3xl cursor-pointer flex items-center gap-2.5 text-white">
+        <span>520р</span>
+        <div className="w-px h-5 bg-white"></div>
+        <img src="../shopping.svg" alt="cart" />
+        <span>3</span>
       </button>
     </header>
   );
