@@ -6,13 +6,13 @@ const Categories = () => {
   const items = ["Все", "Мясные", "Вегетарианская", "Острые", "В лаваше"];
   return (
     <div className="flex items-center justify-between">
-      <ul className="flex gap-2.5">
+      <ul className="flex gap-3 flex-wrap">
         {items.map((item, index) => (
           <li
             key={index}
             className={`${
               active === index ? "bg-stone-800 text-gray-200" : "bg-gray-100"
-            } px-5.5 py-2.5 rounded-3xl font-bold cursor-pointer`}
+            } px-6.5 py-2.5 rounded-3xl font-bold cursor-pointer`}
             onClick={() => setActive(index)}
           >
             {item}

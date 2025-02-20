@@ -5,7 +5,7 @@ const Sort = () => {
   return (
     <div
       className="flex items-center gap-1 cursor-pointer"
-      onClick={() => setOpenModal(true)}
+      onClick={() => setOpenModal(!openModal)}
     >
       <svg
         width="10"

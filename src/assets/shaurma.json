@@ -1,0 +1,102 @@
+[
+  {
+    "id": 0,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/658/1ef/905/thumb_68052_320_0_0_0_auto.jpg",
+    "title": "Фирменный денёр",
+    "types": [0, 1],
+    "sizes": ["small", "medium", "big"],
+    "price": 200,
+    "category": 0,
+    "rating": 4
+  },
+  {
+    "id": 1,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/658/1f1/418/thumb_68063_320_0_0_0_auto.jpg",
+    "title": "Шаверма по-питерски",
+    "types": [0, 1],
+    "sizes": ["small", "big"],
+    "price": 245,
+    "category": 0,
+    "rating": 6
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/658/1ef/f98/thumb_68054_320_0_0_0_auto.jpg",
+    "title": "Греческий денёр",
+    "types": [0],
+    "sizes": ["small", "medium", "big"],
+    "price": 295,
+    "category": 1,
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/658/1f1/602/thumb_68065_320_0_0_0_auto.jpg",
+    "title": "Мексиканский денёр",
+    "types": [1],
+    "sizes": ["small", "medium", "big"],
+    "price": 275,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/658/1f0/b89/thumb_68058_320_0_0_0_auto.jpg",
+    "title": "Берлин денёр",
+    "types": [0, 1],
+    "sizes": ["small", "medium", "big"],
+    "price": 215,
+    "category": 3,
+    "rating": 8
+  },
+  {
+    "id": 5,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/658/1f0/d87/thumb_68060_320_0_0_0_auto.jpg",
+    "title": "Деревенский денёр",
+    "types": [0],
+    "sizes": ["small", "big"],
+    "price": 280,
+    "category": 2,
+    "rating": 2
+  },
+  {
+    "id": 6,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/658/1f0/9d1/thumb_68056_320_0_0_0_auto.jpg",
+    "title": "Вегетарианский денёр",
+    "types": [0, 1],
+    "sizes": ["small", "medium", "big"],
+    "price": 275,
+    "category": 1,
+    "rating": 9
+  },
+  {
+    "id": 7,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/658/1f1/8c5/thumb_68066_320_0_0_0_auto.jpg",
+    "title": "Денёр с креветкой",
+    "types": [0, 1],
+    "sizes": ["small", "medium", "big"],
+    "price": 250,
+    "category": 4,
+    "rating": 10
+  },
+  {
+    "id": 8,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/658/1f2/35b/thumb_68067_320_0_0_0_auto.jpg",
+    "title": "Чикен Чиз в лаваше",
+    "types": [0, 1],
+    "sizes": ["small", "medium", "big"],
+    "price": 295,
+    "category": 5,
+    "rating": 10
+  },
+  {
+    "id": 9,
+    "imageUrl": "https://senordoner.ru/storage/app/uploads/public/66c/ee0/85c/thumb_68138_320_0_0_0_auto.jpg",
+    "title": "GPT Чиз",
+    "types": [0, 1],
+    "sizes": ["medium"],
+    "price": 285,
+    "category": 5,
+    "rating": 7
+  }
+]
