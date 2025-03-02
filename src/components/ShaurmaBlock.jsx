@@ -13,6 +13,7 @@ const ShaurmaBlock = ({ title, imageUrl, price, sizes, types }) => {
           <div className="flex justify-around items-center px-2 py-2.5">
             {types.map((type) => (
               <button
+                key={type}
                 onClick={() => setActiveactiveType(type)}
                 className={`${
                   activeType === type ? "bg-white" : ""
@@ -25,6 +26,7 @@ const ShaurmaBlock = ({ title, imageUrl, price, sizes, types }) => {
           <div className="flex items-center justify-around px-2 pb-2.5">
             {sizes.map((size, index) => (
               <button
+                key={size}
                 onClick={() => setActiveactiveSize(index)}
                 className={`px-6 py-1 ${
                   activeSize === index ? "bg-white" : ""

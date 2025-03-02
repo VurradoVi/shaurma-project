@@ -9,7 +9,7 @@ const Categories = () => {
       <ul className="flex gap-3 flex-wrap">
         {items.map((item, index) => (
           <li
-            key={index}
+            key={item}
             className={`${
               active === index ? "bg-stone-800 text-gray-200" : "bg-gray-100"
             } px-6.5 py-2.5 rounded-3xl font-bold cursor-pointer`}
