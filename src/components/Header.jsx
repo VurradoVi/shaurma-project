@@ -14,7 +14,7 @@ const Header = () => {
         </div>
       </Link>
       <Link to="/cart">
-        <button className=" bg-red-500  font-bold px-4.5 py-2.5 border-0 rounded-3xl cursor-pointer flex items-center gap-2.5 text-white">
+        <button className=" bg-red-500  font-bold px-5 py-2.5 border-0 rounded-3xl cursor-pointer flex items-center justify-center gap-2 text-white">
           <span>520₽</span>
           <div className="w-px h-5 bg-white"></div>
           <img src="../shopping.svg" alt="cart" />

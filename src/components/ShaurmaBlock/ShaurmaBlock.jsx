@@ -15,9 +15,9 @@ const ShaurmaBlock = ({ title, imageUrl, price, sizes, types }) => {
               <button
                 key={type}
                 onClick={() => setActiveactiveType(type)}
-                className={`${
+                className={`w-full ${
                   activeType === type ? "bg-white" : ""
-                } px-8 py-1 rounded-sm cursor-pointer`}
+                } px-7 py-1 rounded-sm cursor-pointer`}
               >
                 {typesCheese[type]}
               </button>

@@ -5,7 +5,7 @@ const Categories = () => {
   const [active, setActive] = useState(0);
   const items = ["Все", "Мясные", "Вегетарианская", "Острые", "В лаваше"];
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between max-[1050px]:flex-col max-[1050px]:gap-3">
       <ul className="flex gap-3 flex-wrap">
         {items.map((item, index) => (
           <li
