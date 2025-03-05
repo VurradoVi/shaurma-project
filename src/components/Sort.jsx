@@ -32,7 +32,7 @@ const Sort = () => {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
+        <b className="max-[750px]:hidden">Сортировка по:</b>
         <span className="text-red-400 underline decoration-dotted ">
           {list[selected]}
         </span>
