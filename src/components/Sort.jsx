@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 
-const Sort = () => {
+const Sort = ({ selectedSort, setSelectedSort }) => {
   const [openModal, setOpenModal] = useState(false);
-  const [selected, setSelected] = useState(0);
-  const list = ["популярности", "цене", "алфавиту"];
+  const list = [
+    { name: "популярности (убыв.)", sortProperty: "rating" },
+    { name: "популярности (возр.)", sortProperty: "-rating" },
+    { name: "цене (убыв.)", sortProperty: "price" },
+    { name: "цене (возр.)", sortProperty: "-price" },
+    { name: "алфавиту (убыв.)", sortProperty: "title" },
+    { name: "алфавиту (возр.)", sortProperty: "-title" },
+  ];
 
   const onClickList = (i) => {
-    setSelected(i);
+    setSelectedSort(i);
     setOpenModal(false);
   };
   return (
@@ -34,7 +40,7 @@ const Sort = () => {
         </svg>
         <b className="max-[750px]:hidden">Сортировка по:</b>
         <span className="text-red-400 underline decoration-dotted ">
-          {list[selected]}
+          {selectedSort.name}
         </span>
       </div>
       <div
@@ -46,12 +52,14 @@ const Sort = () => {
           {list.map((item, i) => (
             <li
               key={item}
-              onClick={() => onClickList(i)}
+              onClick={() => onClickList(item)}
               className={`py-2.5 px-7 hover:bg-red-400/10 cursor-pointer ${
-                selected === i ? "text-red-400 bg-red-400/10 font-bold" : ""
+                selectedSort.name === item.name
+                  ? "text-red-400 bg-red-400/10 font-bold"
+                  : ""
               }`}
             >
-              {item}
+              {item.name}
             </li>
           ))}
         </ul>
