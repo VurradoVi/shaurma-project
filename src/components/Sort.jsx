@@ -51,7 +51,7 @@ const Sort = ({ selectedSort, setSelectedSort }) => {
         <ul>
           {list.map((item, i) => (
             <li
-              key={item}
+              key={i}
               onClick={() => onClickList(item)}
               className={`py-2.5 px-7 hover:bg-red-400/10 cursor-pointer ${
                 selectedSort.name === item.name

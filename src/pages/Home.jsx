@@ -6,7 +6,7 @@ import Skeleton from "../components/ShaurmaBlock/Skeleton";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 
-const Home = () => {
+const Home = ({ searchValue }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,7 +47,11 @@ const Home = () => {
         <div className="grid max-[700px]:grid-cols-1 max-[1050px]:grid-cols-2 max-[1440px]:grid-cols-3 min-[1440px]:grid-cols-4 justify-items-center gap-4">
           {loading
             ? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
-            : data.map((obj) => <ShaurmaBlock key={obj.id} {...obj} />)}
+            : data
+                .filter((obj) =>
+                  obj.title.toLowerCase().includes(searchValue.toLowerCase())
+                )
+                .map((obj) => <ShaurmaBlock key={obj.id} {...obj} />)}
         </div>
       </div>
     </div>

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
+import Search from "./Search";
 
-const Header = () => {
+const Header = ({ searchValue, setSearchValue }) => {
   return (
     <header className="flex justify-between items-center mb-17 border-b border-gray-200 pb-3 max-[580px]:flex-col max-[580px]:gap-3">
       <Link to="/">
@@ -13,6 +14,7 @@ const Header = () => {
           </div>
         </div>
       </Link>
+      <Search searchValue={searchValue} setSearchValue={setSearchValue} />
       <Link to="/cart">
         <button className=" bg-red-500  font-bold px-5 py-2.5 border-0 rounded-3xl cursor-pointer flex items-center justify-center gap-2 text-white">
           <span>520₽</span>
