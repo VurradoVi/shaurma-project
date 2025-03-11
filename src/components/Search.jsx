@@ -2,9 +2,9 @@ import React from "react";
 
 const Search = ({ searchValue, setSearchValue }) => {
   return (
-    <div className="relative">
+    <div className="relative active:scale-99">
       <svg
-        className="absolute top-2 left-1.5 opacity-55"
+        className="absolute top-2 left-1.5 opacity-55 "
         width={26}
         hanging={26}
         enableBackground="new 0 0 32 32"
@@ -40,7 +40,7 @@ const Search = ({ searchValue, setSearchValue }) => {
         />
       </svg>
       <input
-        className="py-1.5 px-9 w-md border border-gray-300 rounded-2xl outline-none focus:border-gray-400 text-xl"
+        className="py-1.5 px-9 w-md border border-gray-300 rounded-2xl outline-none focus:border-gray-400 text-xl "
         type="text"
         onChange={(e) => setSearchValue(e.target.value)}
         value={searchValue}

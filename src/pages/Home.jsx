@@ -5,10 +5,13 @@ import ShaurmaBlock from "../components/ShaurmaBlock/ShaurmaBlock";
 import Skeleton from "../components/ShaurmaBlock/Skeleton";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
+import Pagination from "../components/Pagination";
 
 const Home = ({ searchValue }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [errorFind, setErrorFind] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [activeCategories, setActiveCategories] = useState(0);
   const [selectedSort, setSelectedSort] = useState({
@@ -22,16 +25,20 @@ const Home = ({ searchValue }) => {
     setLoading(true);
     axios
       .get(
-        `https://67c46ab7c4649b9551b38dbe.mockapi.io/items?${
+        `https://67c46ab7c4649b9551b38dbe.mockapi.io/items?page=${currentPage}&limit=8&${
           activeCategories !== 0 ? `category=${activeCategories}` : ""
-        }&sortBy=${selectedSort.sortProperty.replace("-", "")}&order=${order}`
+        }&sortBy=${selectedSort.sortProperty.replace("-", "")}&order=${order}${
+          searchValue ? `&search=${searchValue}` : ""
+        }`
       )
       .then((res) => setData(res.data))
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err);
+        setErrorFind(err);
+      })
       .finally(() => setLoading(false));
     window.scrollTo(0, 0);
-    console.log(selectedSort);
-  }, [activeCategories, selectedSort]);
+  }, [activeCategories, selectedSort, searchValue, currentPage]);
   return (
     <div>
       <div className="flex items-center justify-between max-[1050px]:flex-col max-[1050px]:gap-3">
@@ -47,13 +54,10 @@ const Home = ({ searchValue }) => {
         <div className="grid max-[700px]:grid-cols-1 max-[1050px]:grid-cols-2 max-[1440px]:grid-cols-3 min-[1440px]:grid-cols-4 justify-items-center gap-4">
           {loading
             ? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
-            : data
-                .filter((obj) =>
-                  obj.title.toLowerCase().includes(searchValue.toLowerCase())
-                )
-                .map((obj) => <ShaurmaBlock key={obj.id} {...obj} />)}
+            : data.map((obj) => <ShaurmaBlock key={obj.id} {...obj} />)}
         </div>
       </div>
+      <Pagination onChangePage={(number) => setCurrentPage(number)} />
     </div>
   );
 };
