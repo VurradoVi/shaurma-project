@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ShaurmaBlock from "../components/ShaurmaBlock/ShaurmaBlock";
@@ -6,28 +6,34 @@ import Skeleton from "../components/ShaurmaBlock/Skeleton";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import Pagination from "../components/Pagination";
+import { SearchContext } from "../App";
+import { useDispatch, useSelector } from "react-redux";
+import { setCategoryId } from "../redux/slices/filterSlice";
 
-const Home = ({ searchValue }) => {
+const Home = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorFind, setErrorFind] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [activeCategories, setActiveCategories] = useState(0);
-  const [selectedSort, setSelectedSort] = useState({
-    name: "популярности",
-    sortProperty: "rating",
-  });
+  const { categoryId, sort } = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
 
-  const order = selectedSort.sortProperty.includes("-") ? "asc" : "desc";
+  const { searchValue } = useContext(SearchContext);
+
+  const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+
+  const setActiveCategories = (id) => {
+    dispatch(setCategoryId(id));
+  };
 
   useEffect(() => {
     setLoading(true);
     axios
       .get(
         `https://67c46ab7c4649b9551b38dbe.mockapi.io/items?page=${currentPage}&limit=8&${
-          activeCategories !== 0 ? `category=${activeCategories}` : ""
-        }&sortBy=${selectedSort.sortProperty.replace("-", "")}&order=${order}${
+          categoryId !== 0 ? `category=${categoryId}` : ""
+        }&sortBy=${sort.sortProperty.replace("-", "")}&order=${order}${
           searchValue ? `&search=${searchValue}` : ""
         }`
       )
@@ -38,15 +44,15 @@ const Home = ({ searchValue }) => {
       })
       .finally(() => setLoading(false));
     window.scrollTo(0, 0);
-  }, [activeCategories, selectedSort, searchValue, currentPage]);
+  }, [categoryId, sort, searchValue, currentPage]);
   return (
     <div>
       <div className="flex items-center justify-between max-[1050px]:flex-col max-[1050px]:gap-3">
         <Categories
-          activeCategories={activeCategories}
-          setActiveCategories={(id) => setActiveCategories(id)}
+          categoryId={categoryId}
+          setActiveCategories={setActiveCategories}
         />
-        <Sort selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
+        <Sort />
       </div>
 
       <div className="mt-9">

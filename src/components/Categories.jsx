@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Categories = ({ activeCategories, setActiveCategories }) => {
+const Categories = ({ categoryId, setActiveCategories }) => {
   const items = ["Все", "Мясные", "Вегетарианская", "Острые", "В лаваше"];
   return (
     <div>
@@ -9,7 +9,7 @@ const Categories = ({ activeCategories, setActiveCategories }) => {
           <li
             key={item}
             className={`${
-              activeCategories === index
+              categoryId === index
                 ? "bg-stone-800 text-gray-200"
                 : "bg-gray-100"
             } px-6.5 py-2.5 rounded-3xl font-bold cursor-pointer max-[800px]:px-4 max-[800px]:py-2`}

@@ -4,7 +4,9 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
-import { useState } from "react";
+import { createContext, useState } from "react";
+
+export const SearchContext = createContext();
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
@@ -12,12 +14,14 @@ function App() {
   return (
     <div className="mx-6">
       <Container>
-        <Header searchValue={searchValue} setSearchValue={setSearchValue} />
-        <Routes>
-          <Route path="/" element={<Home searchValue={searchValue} />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <SearchContext.Provider value={{ searchValue, setSearchValue }}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </SearchContext.Provider>
       </Container>
     </div>
   );

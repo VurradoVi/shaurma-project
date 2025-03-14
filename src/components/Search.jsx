@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SearchContext } from "../App";
 
-const Search = ({ searchValue, setSearchValue }) => {
+const Search = () => {
+  const { searchValue, setSearchValue } = useContext(SearchContext);
   return (
     <div className="relative active:scale-99">
       <svg
@@ -51,7 +53,7 @@ const Search = ({ searchValue, setSearchValue }) => {
           onClick={() => setSearchValue("")}
           width={15}
           height={15}
-          className="absolute opacity-45 right-2.5 top-3 cursor-pointer"
+          className="absolute opacity-45 right-2.5 top-3 cursor-pointer "
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >

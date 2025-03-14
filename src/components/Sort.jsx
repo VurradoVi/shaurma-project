@@ -1,18 +1,23 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedSort } from "../redux/slices/filterSlice";
 
-const Sort = ({ selectedSort, setSelectedSort }) => {
+const list = [
+  { name: "популярности (убыв.)", sortProperty: "rating" },
+  { name: "популярности (возр.)", sortProperty: "-rating" },
+  { name: "цене (убыв.)", sortProperty: "price" },
+  { name: "цене (возр.)", sortProperty: "-price" },
+  { name: "алфавиту (убыв.)", sortProperty: "title" },
+  { name: "алфавиту (возр.)", sortProperty: "-title" },
+];
+
+const Sort = () => {
+  const dispatch = useDispatch();
+  const selectedSort = useSelector((state) => state.filter.sort);
   const [openModal, setOpenModal] = useState(false);
-  const list = [
-    { name: "популярности (убыв.)", sortProperty: "rating" },
-    { name: "популярности (возр.)", sortProperty: "-rating" },
-    { name: "цене (убыв.)", sortProperty: "price" },
-    { name: "цене (возр.)", sortProperty: "-price" },
-    { name: "алфавиту (убыв.)", sortProperty: "title" },
-    { name: "алфавиту (возр.)", sortProperty: "-title" },
-  ];
 
   const onClickList = (i) => {
-    setSelectedSort(i);
+    dispatch(setSelectedSort(i));
     setOpenModal(false);
   };
   return (
