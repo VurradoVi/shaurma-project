@@ -3,8 +3,8 @@ import React, { useState } from "react";
 const Categories = ({ categoryId, setActiveCategories }) => {
   const items = ["Все", "Мясные", "Вегетарианская", "Острые", "В лаваше"];
   return (
-    <div>
-      <ul className="flex gap-3 max-[800px]:overflow-auto max-[800px]:w-full text-nowrap">
+    <div className="max-[800px]:overflow-auto max-[800px]:w-full">
+      <ul className="flex gap-3  text-nowrap">
         {items.map((item, index) => (
           <li
             key={item}

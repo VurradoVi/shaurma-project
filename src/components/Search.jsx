@@ -1,8 +1,36 @@
-import React, { useContext } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { SearchContext } from "../App";
+import debounce from "lodash.debounce";
 
 const Search = () => {
-  const { searchValue, setSearchValue } = useContext(SearchContext);
+  const [value, setValue] = useState("");
+  const { setSearchValue } = useContext(SearchContext);
+  const inputRef = useRef();
+
+  const onClickDelete = () => {
+    setSearchValue("");
+    setValue("");
+    inputRef.current.focus();
+  };
+
+  const updateSearchValue = useCallback(
+    debounce((str) => {
+      setSearchValue(str);
+    }, 400),
+    []
+  );
+
+  const onChangeInput = (e) => {
+    setValue(e.target.value);
+    updateSearchValue(e.target.value);
+  };
+
   return (
     <div className="relative active:scale-99">
       <svg
@@ -42,15 +70,16 @@ const Search = () => {
         />
       </svg>
       <input
-        className="py-1.5 px-9 w-md border border-gray-300 rounded-2xl outline-none focus:border-gray-400 text-xl "
+        ref={inputRef}
+        className="py-1.5 px-9 w-md max-[1050px]:w-full border border-gray-300 rounded-2xl outline-none focus:border-gray-400 text-xl "
         type="text"
-        onChange={(e) => setSearchValue(e.target.value)}
-        value={searchValue}
+        onChange={onChangeInput}
+        value={value}
         placeholder="Поиск шаурмы..."
       />
-      {searchValue && (
+      {value && (
         <svg
-          onClick={() => setSearchValue("")}
+          onClick={onClickDelete}
           width={15}
           height={15}
           className="absolute opacity-45 right-2.5 top-3 cursor-pointer "

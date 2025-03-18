@@ -8,15 +8,16 @@ import Sort from "../components/Sort";
 import Pagination from "../components/Pagination";
 import { SearchContext } from "../App";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategoryId } from "../redux/slices/filterSlice";
+import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorFind, setErrorFind] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
 
-  const { categoryId, sort } = useSelector((state) => state.filter);
+  const { categoryId, sort, currentPage } = useSelector(
+    (state) => state.filter
+  );
   const dispatch = useDispatch();
 
   const { searchValue } = useContext(SearchContext);
@@ -25,6 +26,10 @@ const Home = () => {
 
   const setActiveCategories = (id) => {
     dispatch(setCategoryId(id));
+  };
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
   };
 
   useEffect(() => {
@@ -59,11 +64,11 @@ const Home = () => {
         <h2 className="font-extrabold text-3xl mb-6">Вся Шаурма</h2>
         <div className="grid max-[700px]:grid-cols-1 max-[1050px]:grid-cols-2 max-[1440px]:grid-cols-3 min-[1440px]:grid-cols-4 justify-items-center gap-4">
           {loading
-            ? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
+            ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
             : data.map((obj) => <ShaurmaBlock key={obj.id} {...obj} />)}
         </div>
       </div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };
