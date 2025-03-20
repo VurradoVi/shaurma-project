@@ -1,9 +1,34 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../../redux/slices/cartSlice";
 
-const ShaurmaBlock = ({ title, imageUrl, price, sizes, types }) => {
+const typesCheese = ["с сыром", "без сыра"];
+const typesSize = ["small", "medium", "big"];
+
+const ShaurmaBlock = ({ id, title, imageUrl, price, sizes, types }) => {
   const [activeType, setActiveactiveType] = useState(types[0]);
   const [activeSize, setActiveactiveSize] = useState(0);
-  const typesCheese = ["с сыром", "без сыра"];
+
+  const cartItem = useSelector((state) =>
+    state.cart.items.find((obj) => obj.id === id)
+  );
+
+  const addedCount = cartItem ? cartItem.count : 0;
+
+  const dispatch = useDispatch();
+
+  const onClickAdd = () => {
+    const item = {
+      id,
+      title,
+      imageUrl,
+      price,
+      type: typesCheese[activeType],
+      size: typesSize[activeSize],
+    };
+    dispatch(addItem(item));
+  };
+
   return (
     <div className="flex flex-col items-center w-2xs ">
       <img className="w-3xs" src={imageUrl} alt={title} />
@@ -40,7 +65,10 @@ const ShaurmaBlock = ({ title, imageUrl, price, sizes, types }) => {
       </div>
       <div className="flex items-center justify-around w-full mt-4">
         <h4 className="font-extrabold text-xl">от {price} ₽</h4>
-        <button className="group flex items-center gap-1.5 font-bold text-orange-500 border border-orange-500 transition duration-500 ease-in-out hover:bg-orange-500 hover:text-gray-200 px-3 py-1.5 rounded-3xl cursor-pointer">
+        <button
+          onClick={onClickAdd}
+          className="group flex items-center gap-1.5 font-bold text-orange-500 border border-orange-500 transition duration-200 ease-in-out hover:bg-orange-500 hover:text-gray-200 px-3 py-1.5 rounded-3xl cursor-pointer active:translate-y-0.5"
+        >
           <svg
             width="13"
             height="13"
@@ -54,9 +82,11 @@ const ShaurmaBlock = ({ title, imageUrl, price, sizes, types }) => {
             />
           </svg>{" "}
           Добавить
-          <span className="bg-orange-500 text-gray-200 transition duration-500 group-hover:bg-gray-200 group-hover:text-black   px-2 rounded-3xl ">
-            3
-          </span>
+          {addedCount > 0 && (
+            <span className="bg-orange-500 text-gray-200 transition duration-500 group-hover:bg-gray-200 group-hover:text-black   px-2 rounded-3xl ">
+              {addedCount}
+            </span>
+          )}
         </button>
       </div>
     </div>

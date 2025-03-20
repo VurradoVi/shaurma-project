@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedSort } from "../redux/slices/filterSlice";
+import { current } from "@reduxjs/toolkit";
 
 const list = [
   { name: "популярности (убыв.)", sortProperty: "rating" },
@@ -16,12 +17,26 @@ const Sort = () => {
   const selectedSort = useSelector((state) => state.filter.sort);
   const [openModal, setOpenModal] = useState(false);
 
+  const sortRef = useRef();
+
   const onClickList = (i) => {
     dispatch(setSelectedSort(i));
     setOpenModal(false);
   };
+
+  useEffect(() => {
+    const handleCkickOutside = (event) => {
+      if (!sortRef.current.contains(event.target)) {
+        setOpenModal(false);
+      }
+    };
+
+    document.body.addEventListener("click", handleCkickOutside);
+
+    return () => document.body.removeEventListener("click", handleCkickOutside);
+  }, []);
   return (
-    <div className="relative">
+    <div className="relative" ref={sortRef}>
       <div
         className="flex items-center gap-1 cursor-pointer"
         onClick={() => setOpenModal(!openModal)}
