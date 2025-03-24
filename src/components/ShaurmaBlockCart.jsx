@@ -15,8 +15,8 @@ const ShaurmaBlockCart = ({
 
   return (
     <div>
-      <div className="flex items-center justify-between border-t border-gray-200 pt-5 pb-5 ">
-        <div className="flex items-center gap-3.5">
+      <div className="flex items-center w-full border-t border-gray-200 pt-5 pb-5 ">
+        <div className="flex items-center gap-3.5 w-[50%]">
           <img width={70} height={30} src={imageUrl} alt="shaurma" />
           <div>
             <h3 className="text-xl font-bold">{title}</h3>
@@ -25,7 +25,7 @@ const ShaurmaBlockCart = ({
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 w-[13%]">
           <button
             onClick={() => dispatch(minusItem(id))}
             className="group border-3 border-red-400 p-2.5 rounded-full cursor-pointer transition-colors hover:bg-orange-400 "
@@ -66,10 +66,12 @@ const ShaurmaBlockCart = ({
             </svg>
           </button>
         </div>
-        <h3 className="font-bold text-xl">{price * count}p</h3>
+        <h3 className="font-bold text-xl w-[33%] text-center">
+          {price * count}p
+        </h3>
         <button
           onClick={() => dispatch(removeItem(id))}
-          className="group border-3 border-gray-300 p-2.5 rounded-full cursor-pointer transition-colors hover:bg-gray-300 "
+          className="group border-3 border-gray-300 p-2.5 rounded-full cursor-pointer transition-colors hover:bg-gray-300 ml-auto"
         >
           <svg
             width="14"

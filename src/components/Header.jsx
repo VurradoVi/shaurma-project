@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import Search from "./Search";
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const { totalPrice, items } = useSelector((state) => state.cart);
+
+  const location = useLocation();
+  const isCartPage = location.pathname === "/cart";
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   return (
@@ -22,9 +25,9 @@ const Header = () => {
           </div>
         </div>
       </Link>
-      <Search />
+      {!isCartPage && <Search />}
       <Link to="/cart">
-        <button className=" bg-red-500  font-bold px-5 py-2.5 border-0 rounded-3xl cursor-pointer flex items-center justify-center gap-2 text-white active:scale-95 group">
+        <button className=" bg-red-500  font-bold px-6.5 py-2.5 border-0 rounded-3xl cursor-pointer flex items-center justify-center gap-2.5 text-white active:scale-95 group">
           <span>{totalPrice}₽</span>
           <div className="w-px h-5 bg-white"></div>
           <img
