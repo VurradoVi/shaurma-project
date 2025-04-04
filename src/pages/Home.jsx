@@ -9,15 +9,16 @@ import Pagination from "../components/Pagination";
 import { SearchContext } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
+import { fetchShaurma } from "../redux/slices/shaurma/shaurmaSlice";
 
 const Home = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [errorFind, setErrorFind] = useState("");
 
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter
   );
+  const { items, status } = useSelector((state) => state.shaurma);
+
   const dispatch = useDispatch();
 
   const { searchValue } = useContext(SearchContext);
@@ -32,24 +33,24 @@ const Home = () => {
     dispatch(setCurrentPage(number));
   };
 
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(
-        `https://67c46ab7c4649b9551b38dbe.mockapi.io/items?page=${currentPage}&limit=8&${
-          categoryId !== 0 ? `category=${categoryId}` : ""
-        }&sortBy=${sort.sortProperty.replace("-", "")}&order=${order}${
-          searchValue ? `&search=${searchValue}` : ""
-        }`
-      )
-      .then((res) => setData(res.data))
-      .catch((err) => {
-        console.log(err);
-        setErrorFind(err);
+  const getShaurma = async () => {
+    dispatch(
+      fetchShaurma({
+        currentPage,
+        categoryId,
+        sort,
+        order,
+        searchValue,
       })
-      .finally(() => setLoading(false));
+    );
+
     window.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    getShaurma();
   }, [categoryId, sort, searchValue, currentPage]);
+
   return (
     <div>
       <div className="flex items-center justify-between max-[1050px]:flex-col max-[1050px]:gap-3">
@@ -62,13 +63,25 @@ const Home = () => {
 
       <div className="mt-9">
         <h2 className="font-extrabold text-3xl mb-6">Вся Шаурма</h2>
-        <div className="grid max-[700px]:grid-cols-1 max-[1050px]:grid-cols-2 max-[1440px]:grid-cols-3 min-[1440px]:grid-cols-4 justify-items-center gap-4">
-          {loading
-            ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
-            : data.map((obj) => <ShaurmaBlock key={obj.id} {...obj} />)}
-        </div>
+        {status === "error" ? (
+          <div className="m-25 mx-auto w-[580px] text-center">
+            <h1 className="text-3xl font-extrabold mb-2.5">Ошибка</h1>
+            <p className="text-xl">Повторите попытку позже...</p>
+            <h1 className="text-9xl mt-6">😕</h1>
+          </div>
+        ) : (
+          <div className="grid max-[700px]:grid-cols-1 max-[1050px]:grid-cols-2 max-[1440px]:grid-cols-3 min-[1440px]:grid-cols-4 justify-items-center gap-4">
+            {status === "loading"
+              ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
+              : items.map((obj) => <ShaurmaBlock key={obj.id} {...obj} />)}
+          </div>
+        )}
       </div>
-      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+      {status !== "success" ? (
+        ""
+      ) : (
+        <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+      )}
     </div>
   );
 };

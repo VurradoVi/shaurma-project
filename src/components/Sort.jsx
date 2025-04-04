@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedSort } from "../redux/slices/filterSlice";
-import { current } from "@reduxjs/toolkit";
 
 const list = [
   { name: "популярности (убыв.)", sortProperty: "rating" },
