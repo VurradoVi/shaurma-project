@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import { createContext, useState } from "react";
+import FullShaurma from "./components/FullShaurma";
 
 export const SearchContext = createContext();
 
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/shaurma/:id" element={<FullShaurma />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </SearchContext.Provider>

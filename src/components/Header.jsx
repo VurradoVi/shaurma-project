@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Link, useLocation } from "react-router";
 import Search from "./Search";
 import { useSelector } from "react-redux";
+import { selectCart } from "../redux/slices/cartSlice";
 
 const Header = () => {
-  const { totalPrice, items } = useSelector((state) => state.cart);
+  const { totalPrice, items } = useSelector(selectCart);
 
   const location = useLocation();
   const isCartPage = location.pathname === "/cart";

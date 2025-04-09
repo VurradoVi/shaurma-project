@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
+import { Link } from "react-router";
 
 const typesCheese = ["с сыром", "без сыра"];
 const typesSize = ["small", "medium", "big"];
@@ -31,8 +32,14 @@ const ShaurmaBlock = ({ id, title, imageUrl, price, sizes, types }) => {
 
   return (
     <div className="flex flex-col items-center w-2xs ">
-      <img className="w-3xs" src={imageUrl} alt={title} />
-      <h4 className="font-extrabold text-2xl mb-5">{title}</h4>
+      <Link to={`/shaurma/${id}`}>
+        <img
+          className="w-3xs group hover:scale-103 transition duration-400"
+          src={imageUrl}
+          alt={title}
+        />
+        <h4 className="font-extrabold text-2xl mb-5">{title}</h4>
+      </Link>
       <div className="bg-gray-200 rounded-xl w-70">
         <div className="font-bold">
           <div className="flex justify-around items-center px-2 py-2.5">
