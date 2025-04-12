@@ -1,10 +1,15 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 
 const FullShaurma = () => {
   const { id } = useParams();
-  const [shaurma, setShaurma] = useState("");
+  const [shaurma, setShaurma] = useState<{
+    title: string;
+    imageUrl: string;
+    price: number;
+    description: string;
+  }>();
 
   const navigate = useNavigate();
 

@@ -15,7 +15,6 @@ const Cart = () => {
       dispatch(clearItems());
     }
   };
-  console.log("tems^", items);
   return (
     <div className="max-w-4xl mx-auto h-[75vh] flex flex-col justify-between">
       {items.length > 0 ? (
