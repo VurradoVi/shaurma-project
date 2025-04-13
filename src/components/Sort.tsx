@@ -1,8 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSort, setSelectedSort } from "../redux/slices/filterSlice";
 
-const list = [
+type ListItem = {
+  name: string;
+  sortProperty: string;
+};
+
+const list: ListItem[] = [
   { name: "популярности (убыв.)", sortProperty: "rating" },
   { name: "популярности (возр.)", sortProperty: "-rating" },
   { name: "цене (убыв.)", sortProperty: "price" },
@@ -16,16 +21,16 @@ const Sort = () => {
   const selectedSort = useSelector(selectSort);
   const [openModal, setOpenModal] = useState(false);
 
-  const sortRef = useRef();
+  const sortRef = useRef<HTMLDivElement>(null);
 
-  const onClickList = (i) => {
+  const onClickList = (i: ListItem) => {
     dispatch(setSelectedSort(i));
     setOpenModal(false);
   };
 
   useEffect(() => {
     const handleCkickOutside = (event) => {
-      if (!sortRef.current.contains(event.target)) {
+      if (sortRef.current && !sortRef.current.contains(event.target)) {
         setOpenModal(false);
       }
     };

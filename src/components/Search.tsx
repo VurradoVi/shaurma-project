@@ -1,22 +1,16 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useContext, useRef, useState } from "react";
 import { SearchContext } from "../App";
 import debounce from "lodash.debounce";
 
 const Search = () => {
   const [value, setValue] = useState("");
   const { setSearchValue } = useContext(SearchContext);
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onClickDelete = () => {
     setSearchValue("");
     setValue("");
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   const updateSearchValue = useCallback(

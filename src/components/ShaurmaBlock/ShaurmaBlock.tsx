@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../redux/slices/cartSlice";
 import { Link } from "react-router";
@@ -6,8 +6,24 @@ import { Link } from "react-router";
 const typesCheese = ["с сыром", "без сыра"];
 const typesSize = ["small", "medium", "big"];
 
-const ShaurmaBlock = ({ id, title, imageUrl, price, sizes, types }) => {
-  const [activeType, setActiveactiveType] = useState(types[0]);
+type ShaurmaBlockProps = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  price: number;
+  sizes: string[];
+  types: number[];
+};
+
+const ShaurmaBlock = ({
+  id,
+  title,
+  imageUrl,
+  price,
+  sizes,
+  types,
+}: ShaurmaBlockProps) => {
+  const [activeType, setActiveactiveType] = useState(0);
   const [activeSize, setActiveactiveSize] = useState(0);
 
   const cartItem = useSelector((state) =>

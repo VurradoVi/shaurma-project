@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
+import { useEffect } from "react";
 import ShaurmaBlock from "../components/ShaurmaBlock/ShaurmaBlock";
 import Skeleton from "../components/ShaurmaBlock/Skeleton";
 import Categories from "../components/Categories";
@@ -12,8 +11,6 @@ import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
 import { fetchShaurma } from "../redux/slices/shaurma/shaurmaSlice";
 
 const Home = () => {
-  const [errorFind, setErrorFind] = useState("");
-
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter
   );
@@ -25,12 +22,12 @@ const Home = () => {
 
   const order = sort.sortProperty.includes("-") ? "asc" : "desc";
 
-  const setActiveCategories = (id) => {
+  const setActiveCategories = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
-  const onChangePage = (number) => {
-    dispatch(setCurrentPage(number));
+  const onChangePage = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
 
   const getShaurma = async () => {

@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import { Link, useLocation } from "react-router";
 import Search from "./Search";
 import { useSelector } from "react-redux";

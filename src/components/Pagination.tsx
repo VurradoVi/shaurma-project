@@ -1,7 +1,11 @@
-import React from "react";
 import ReactPaginate from "react-paginate";
 
-const Pagination = ({ onChangePage, currentPage }) => {
+type PaginationProps = {
+  onChangePage: any;
+  currentPage: number;
+};
+
+const Pagination = ({ onChangePage, currentPage }: PaginationProps) => {
   return (
     <ReactPaginate
       className="flex justify-center items-center space-x-2 mt-10" // Стили для контейнера пагинации

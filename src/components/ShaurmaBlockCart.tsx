@@ -1,6 +1,15 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { addItem, minusItem, removeItem } from "../redux/slices/cartSlice";
+
+type ShaurmaBlockCartProps = {
+  id: string;
+  title: string;
+  size: string;
+  count: number;
+  price: number;
+  type: string;
+  imageUrl: string;
+};
 
 const ShaurmaBlockCart = ({
   id,
@@ -10,7 +19,7 @@ const ShaurmaBlockCart = ({
   price,
   type,
   imageUrl,
-}) => {
+}: ShaurmaBlockCartProps) => {
   const dispatch = useDispatch();
 
   return (

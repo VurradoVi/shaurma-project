@@ -1,6 +1,10 @@
-import React from "react";
+import { ReactNode } from "react";
 
-const Container = ({ children }) => {
+interface ContainerProps {
+  children: ReactNode;
+}
+
+const Container = ({ children }: ContainerProps) => {
   return (
     <div className="w-full min-h-[96vh] overflow-auto max-w-[1540px] mx-auto mt-5 bg-white rounded-xl px-12 py-8 max-[800px]:px-6 ">
       {children}

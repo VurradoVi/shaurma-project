@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+type CategoriesProps = {
+  categoryId: number;
+  setActiveCategories: any;
+};
 
-const Categories = ({ categoryId, setActiveCategories }) => {
+const Categories = ({ categoryId, setActiveCategories }: CategoriesProps) => {
   const items = ["Все", "Мясные", "Вегетарианская", "Острые", "В лаваше"];
   return (
     <div className="max-[800px]:overflow-auto max-[800px]:w-full">
