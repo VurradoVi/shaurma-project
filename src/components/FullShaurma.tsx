@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
+import AddBtn from "./ShaurmaBlock/AddBtn";
 
 const FullShaurma = () => {
   const { id } = useParams();
@@ -35,8 +36,8 @@ const FullShaurma = () => {
     <div className="flex items-center flex-col">
       <h1 className="text-4xl font-extrabold mt-5 mb-5">{shaurma.title}</h1>
       <img
-        width={400}
-        height={300}
+        width={300}
+        height={200}
         src={shaurma.imageUrl}
         alt={shaurma.title}
       />

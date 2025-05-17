@@ -29,8 +29,8 @@ const Sort = () => {
   };
 
   useEffect(() => {
-    const handleCkickOutside = (event) => {
-      if (sortRef.current && !sortRef.current.contains(event.target)) {
+    const handleCkickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
         setOpenModal(false);
       }
     };
@@ -68,7 +68,7 @@ const Sort = () => {
         </span>
       </div>
       <div
-        className={`absolute top-6.5 right-0 bg-white shadow-2xl rounded-xl py-1.5 ${
+        className={`absolute top-6.5 right-0 bg-white shadow-2xl rounded-xl py-1.5 z-10 ${
           openModal ? "visible" : "hidden"
         }`}
       >

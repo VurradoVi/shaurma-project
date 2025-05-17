@@ -8,7 +8,7 @@ import Pagination from "../components/Pagination";
 import { SearchContext } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
-import { fetchShaurma } from "../redux/slices/shaurma/shaurmaSlice";
+import { fetchShaurma } from "../redux/slices/shaurmaSlice";
 
 const Home = () => {
   const { categoryId, sort, currentPage } = useSelector(
@@ -71,7 +71,7 @@ const Home = () => {
         ) : (
           <div className="grid max-[700px]:grid-cols-1 max-[1050px]:grid-cols-2 max-[1440px]:grid-cols-3 min-[1440px]:grid-cols-4 justify-items-center gap-4">
             {status === "loading"
-              ? [...new Array(4)].map((_, i) => <Skeleton key={i} />)
+              ? [...new Array(8)].map((_, i) => <Skeleton key={i} />)
               : items.map((obj) => <ShaurmaBlock key={obj.id} {...obj} />)}
           </div>
         )}

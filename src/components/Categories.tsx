@@ -1,10 +1,11 @@
 type CategoriesProps = {
   categoryId: number;
-  setActiveCategories: any;
+  setActiveCategories: (i: number) => void;
 };
 
+const items = ["Все", "Мясные", "Вегетарианская", "Острые", "В лаваше"];
+
 const Categories = ({ categoryId, setActiveCategories }: CategoriesProps) => {
-  const items = ["Все", "Мясные", "Вегетарианская", "Острые", "В лаваше"];
   return (
     <div className="max-[800px]:overflow-auto max-[800px]:w-full">
       <ul className="flex gap-3  text-nowrap">
