@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../../redux/slices/cartSlice";
+import { addItem, CartItem } from "../../redux/slices/cartSlice";
 import { Link } from "react-router";
 import AddBtn from "./AddBtn";
 
@@ -36,13 +36,14 @@ const ShaurmaBlock = ({
   const dispatch = useDispatch();
 
   const onClickAdd = () => {
-    const item = {
+    const item: CartItem = {
       id,
       title,
       imageUrl,
       price,
       type: typesCheese[activeType],
       size: typesSize[activeSize],
+      count: 0,
     };
     dispatch(addItem(item));
   };

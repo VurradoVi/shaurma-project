@@ -1,10 +1,33 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Sort } from "./filterSlice";
 
-export const fetchShaurma = createAsyncThunk(
+type FetchShaurmaProps = {
+  currentPage: number;
+  categoryId: number;
+  sort: Sort;
+  order: string;
+  searchValue: string;
+};
+
+type Shaurma = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  price: number;
+  sizes: string[];
+  types: number[];
+};
+
+interface ShaurmaSliceState {
+  items: Shaurma[];
+  status: string;
+}
+
+export const fetchShaurma = createAsyncThunk<Shaurma[], FetchShaurmaProps>(
   "shaurma/fetchShaurmaStatus",
   async ({ currentPage, categoryId, sort, order, searchValue }) => {
-    const res = await axios.get(
+    const res = await axios.get<Shaurma[]>(
       `https://67c46ab7c4649b9551b38dbe.mockapi.io/items?page=${currentPage}&limit=8&${
         categoryId !== 0 ? `category=${categoryId}` : ""
       }&sortBy=${sort.sortProperty.replace("-", "")}&order=${order}${
@@ -15,7 +38,7 @@ export const fetchShaurma = createAsyncThunk(
   }
 );
 
-const initialState = {
+const initialState: ShaurmaSliceState = {
   items: [],
   status: "loading",
 };
@@ -24,7 +47,7 @@ const shaurmaSlice = createSlice({
   name: "shaurma",
   initialState,
   reducers: {
-    setItems(state, action) {
+    setItems(state, action: PayloadAction<Shaurma[]>) {
       state.items = action.payload;
     },
   },

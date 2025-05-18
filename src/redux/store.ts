@@ -6,3 +6,5 @@ import shaurma from "./slices/shaurmaSlice";
 export const store = configureStore({
   reducer: { filter, cart, shaurma },
 });
+
+export type RootState = ReturnType<typeof store.getState>;
