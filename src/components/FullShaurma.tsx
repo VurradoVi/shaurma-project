@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
-import AddBtn from "./ShaurmaBlock/AddBtn";
 
 const FullShaurma = () => {
   const { id } = useParams();

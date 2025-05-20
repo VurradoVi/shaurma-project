@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Sort } from "./filterSlice";
+import { RootState } from "../store";
 
 type FetchShaurmaProps = {
   currentPage: number;
@@ -19,9 +20,15 @@ type Shaurma = {
   types: number[];
 };
 
+export const enum Status {
+  LOADING = "loading",
+  ERROR = "error",
+  SUCCESS = "success",
+}
+
 interface ShaurmaSliceState {
   items: Shaurma[];
-  status: string;
+  status: Status;
 }
 
 export const fetchShaurma = createAsyncThunk<Shaurma[], FetchShaurmaProps>(
@@ -40,7 +47,7 @@ export const fetchShaurma = createAsyncThunk<Shaurma[], FetchShaurmaProps>(
 
 const initialState: ShaurmaSliceState = {
   items: [],
-  status: "loading",
+  status: Status.LOADING,
 };
 
 const shaurmaSlice = createSlice({
@@ -54,19 +61,24 @@ const shaurmaSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchShaurma.pending, (state) => {
-        state.status = "loading";
+        state.status = Status.LOADING;
         state.items = [];
       })
-      .addCase(fetchShaurma.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.status = "success";
-      })
+      .addCase(
+        fetchShaurma.fulfilled,
+        (state, action: PayloadAction<Shaurma[]>) => {
+          state.items = action.payload;
+          state.status = Status.SUCCESS;
+        }
+      )
       .addCase(fetchShaurma.rejected, (state) => {
-        state.status = "error";
+        state.status = Status.ERROR;
         state.items = [];
       });
   },
 });
+
+export const selectShaurmaData = (state: RootState) => state.shaurma;
 
 export const { setItems } = shaurmaSlice.actions;
 

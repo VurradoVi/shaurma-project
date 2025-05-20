@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem, CartItem } from "../../redux/slices/cartSlice";
 import { Link } from "react-router";
 import AddBtn from "./AddBtn";
+import { RootState } from "../../redux/store";
 
 const typesCheese = ["с сыром", "без сыра"];
 const typesSize = ["small", "medium", "big"];
@@ -27,7 +28,18 @@ const ShaurmaBlock = ({
   const [activeType, setActiveactiveType] = useState(0);
   const [activeSize, setActiveactiveSize] = useState(0);
 
-  const cartItem = useSelector((state) =>
+  let finalPrice =
+    activeSize === 0
+      ? price
+      : activeSize === 1
+      ? Math.round(price * 1.1)
+      : Math.round(price * 1.2);
+
+  if (activeType === 0) {
+    finalPrice -= 20;
+  }
+
+  const cartItem = useSelector((state: RootState) =>
     state.cart.items.find((obj) => obj.id === id)
   );
 
@@ -40,7 +52,7 @@ const ShaurmaBlock = ({
       id,
       title,
       imageUrl,
-      price,
+      price: finalPrice,
       type: typesCheese[activeType],
       size: typesSize[activeSize],
       count: 0,
@@ -89,7 +101,7 @@ const ShaurmaBlock = ({
         </div>
       </div>
       <div className="flex items-center justify-around w-full mt-4">
-        <h4 className="font-extrabold text-xl">от {price} ₽</h4>
+        <h4 className="font-extrabold text-xl">от {finalPrice} ₽</h4>
         <AddBtn onClickAdd={onClickAdd} addedCount={addedCount} />
       </div>
     </div>

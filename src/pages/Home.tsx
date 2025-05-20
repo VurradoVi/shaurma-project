@@ -6,17 +6,18 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import Pagination from "../components/Pagination";
 import { SearchContext } from "../App";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
-import { fetchShaurma } from "../redux/slices/shaurmaSlice";
+import { fetchShaurma, selectShaurmaData } from "../redux/slices/shaurmaSlice";
+import { RootState, useAppDispatch } from "../redux/store";
 
 const Home = () => {
   const { categoryId, sort, currentPage } = useSelector(
-    (state) => state.filter
+    (state: RootState) => state.filter
   );
-  const { items, status } = useSelector((state) => state.shaurma);
+  const { items, status } = useSelector(selectShaurmaData);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { searchValue } = useContext(SearchContext);
 

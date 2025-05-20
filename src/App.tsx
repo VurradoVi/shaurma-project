@@ -4,10 +4,20 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
-import { createContext, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useState } from "react";
 import FullShaurma from "./components/FullShaurma";
 
-export const SearchContext = createContext();
+interface SearchContextType {
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
+}
+
+export const SearchContext = createContext<SearchContextType>({
+  searchValue: "",
+  setSearchValue: () => {
+    console.warn("No provider for SearchContext");
+  },
+});
 
 function App() {
   const [searchValue, setSearchValue] = useState("");

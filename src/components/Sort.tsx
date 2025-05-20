@@ -1,19 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSort, setSelectedSort } from "../redux/slices/filterSlice";
+import {
+  selectSort,
+  setSelectedSort,
+  SortPropertyEnum,
+} from "../redux/slices/filterSlice";
 
 type ListItem = {
   name: string;
-  sortProperty: string;
+  sortProperty: SortPropertyEnum;
 };
 
 const list: ListItem[] = [
-  { name: "популярности (убыв.)", sortProperty: "rating" },
-  { name: "популярности (возр.)", sortProperty: "-rating" },
-  { name: "цене (убыв.)", sortProperty: "price" },
-  { name: "цене (возр.)", sortProperty: "-price" },
-  { name: "алфавиту (убыв.)", sortProperty: "title" },
-  { name: "алфавиту (возр.)", sortProperty: "-title" },
+  { name: "популярности (убыв.)", sortProperty: SortPropertyEnum.RATING_DESC },
+  { name: "популярности (возр.)", sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: "цене (убыв.)", sortProperty: SortPropertyEnum.PRICE_DESC },
+  { name: "цене (возр.)", sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: "алфавиту (убыв.)", sortProperty: SortPropertyEnum.TITLE_DESC },
+  { name: "алфавиту (возр.)", sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
 const Sort = () => {

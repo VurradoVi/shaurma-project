@@ -25,7 +25,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem(state, action: PayloadAction<CartItem>) {
+    addItem(state, action: PayloadAction<Partial<CartItem>>) {
       const findItem = state.items.find((obj) => obj.id === action.payload.id);
 
       if (findItem) {
@@ -34,7 +34,7 @@ const cartSlice = createSlice({
         state.items.push({
           ...action.payload,
           count: 1,
-        });
+        } as CartItem);
       }
 
       state.totalPrice = state.items.reduce((sum, obj) => {

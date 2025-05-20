@@ -1,6 +1,11 @@
-import React from "react";
+import { FC } from "react";
 
-const AddBtn = ({ onClickAdd, addedCount }) => {
+type AddBtnProps = {
+  onClickAdd: () => void;
+  addedCount: number;
+};
+
+const AddBtn: FC<AddBtnProps> = ({ onClickAdd, addedCount }) => {
   return (
     <button
       onClick={onClickAdd}
