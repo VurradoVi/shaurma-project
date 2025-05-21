@@ -39,7 +39,7 @@ const Cart = () => {
               </button>
             </div>
           </div>
-          <div className="overflow-auto max-h-[420px] h-full">
+          <div className="overflow-auto max-h-[420px] h-full scroll-smooth duration-1000">
             {items.map((items) => (
               <ShaurmaBlockCart key={items.id} {...items} />
             ))}
