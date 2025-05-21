@@ -25,19 +25,23 @@ const Header = () => {
           </div>
         </div>
       </Link>
-      {!isCartPage && <Search />}
-      <Link to="/cart">
-        <button className=" bg-red-500  font-bold px-6.5 py-2.5 border-0 rounded-3xl cursor-pointer flex items-center justify-center gap-2.5 text-white active:scale-95 group">
-          <span>{totalPrice}₽</span>
-          <div className="w-px h-5 bg-white"></div>
-          <img
-            className="group-hover:animate-bounce"
-            src="../shopping.svg"
-            alt="cart"
-          />
-          <span>{totalCount}</span>
-        </button>
-      </Link>
+      {!isCartPage && (
+        <>
+          <Search />
+          <Link to="/cart">
+            <button className=" bg-red-500  font-bold px-6.5 py-2.5 border-0 rounded-3xl cursor-pointer flex items-center justify-center gap-2.5 text-white active:scale-95 group">
+              <span>{totalPrice}₽</span>
+              <div className="w-px h-5 bg-white"></div>
+              <img
+                className="group-hover:animate-bounce"
+                src="../shopping.svg"
+                alt="cart"
+              />
+              <span>{totalCount}</span>
+            </button>
+          </Link>
+        </>
+      )}
     </header>
   );
 };

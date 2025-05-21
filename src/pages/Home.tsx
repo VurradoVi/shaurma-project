@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { useEffect } from "react";
 import ShaurmaBlock from "../components/ShaurmaBlock/ShaurmaBlock";
 import Skeleton from "../components/ShaurmaBlock/Skeleton";
@@ -23,9 +23,9 @@ const Home = () => {
 
   const order = sort.sortProperty.includes("-") ? "asc" : "desc";
 
-  const setActiveCategories = (id: number) => {
+  const setActiveCategories = useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, []);
 
   const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page));
@@ -56,7 +56,7 @@ const Home = () => {
           categoryId={categoryId}
           setActiveCategories={setActiveCategories}
         />
-        <Sort />
+        <Sort sort={sort} />
       </div>
 
       <div className="mt-9">

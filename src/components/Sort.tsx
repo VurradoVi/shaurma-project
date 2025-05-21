@@ -1,14 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { FC, memo, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectSort,
   setSelectedSort,
+  Sort,
   SortPropertyEnum,
 } from "../redux/slices/filterSlice";
 
 type ListItem = {
   name: string;
   sortProperty: SortPropertyEnum;
+};
+
+type SortPopupProps = {
+  sort: Sort;
 };
 
 const list: ListItem[] = [
@@ -20,9 +24,8 @@ const list: ListItem[] = [
   { name: "алфавиту (возр.)", sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
-const Sort = () => {
+const SortPopup: FC<SortPopupProps> = memo(({ sort }) => {
   const dispatch = useDispatch();
-  const selectedSort = useSelector(selectSort);
   const [openModal, setOpenModal] = useState(false);
 
   const sortRef = useRef<HTMLDivElement>(null);
@@ -68,7 +71,7 @@ const Sort = () => {
         </svg>
         <b className="max-[750px]:hidden">Сортировка по:</b>
         <span className="text-red-400 underline decoration-dotted ">
-          {selectedSort.name}
+          {sort.name}
         </span>
       </div>
       <div
@@ -82,7 +85,7 @@ const Sort = () => {
               key={i}
               onClick={() => onClickList(item)}
               className={`py-2.5 px-7 hover:bg-red-400/10 cursor-pointer ${
-                selectedSort.name === item.name
+                sort.name === item.name
                   ? "text-red-400 bg-red-400/10 font-bold"
                   : ""
               }`}
@@ -94,6 +97,6 @@ const Sort = () => {
       </div>
     </div>
   );
-};
+});
 
-export default Sort;
+export default SortPopup;

@@ -36,8 +36,13 @@ const ShaurmaBlockCart = ({
         </div>
         <div className="flex items-center gap-3 w-[13%]">
           <button
+            disabled={count === 1}
             onClick={() => dispatch(minusItem(id))}
-            className="group border-3 border-red-400 p-2.5 rounded-full cursor-pointer transition-colors hover:bg-orange-400 "
+            className={`border-3 border-red-400 p-2.5 rounded-full cursor-pointer transition-colors ${
+              count === 1
+                ? "opacity-25"
+                : "group hover:bg-orange-400 active:translate-y-0.5"
+            }`}
           >
             <svg
               width="14"
@@ -55,7 +60,7 @@ const ShaurmaBlockCart = ({
           <p className="font-bold text-xl">{count}</p>
           <button
             onClick={() => dispatch(addItem({ id }))}
-            className="group border-3 border-red-400 p-2.5 rounded-full cursor-pointer transition-colors hover:bg-orange-400 "
+            className="group border-3 border-red-400 p-2.5 rounded-full cursor-pointer transition-colors hover:bg-orange-400 active:translate-y-0.5"
           >
             <svg
               width="13"

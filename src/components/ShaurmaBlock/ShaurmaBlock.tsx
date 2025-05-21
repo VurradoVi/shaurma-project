@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, CartItem } from "../../redux/slices/cartSlice";
 import { Link } from "react-router";
@@ -27,16 +27,30 @@ const ShaurmaBlock = ({
 }: ShaurmaBlockProps) => {
   const [activeType, setActiveactiveType] = useState(0);
   const [activeSize, setActiveactiveSize] = useState(0);
+  const [scaleClass, setScaleClass] = useState("scale-100");
+  const [hasInitialized, setHasInitialized] = useState(false);
+
+  useEffect(() => {
+    if (!hasInitialized) {
+      setHasInitialized(true);
+      return;
+    }
+
+    setScaleClass("scale-115");
+    const timer = setTimeout(() => setScaleClass("scale-100"), 300);
+
+    return () => clearTimeout(timer);
+  }, [activeSize, activeType]);
 
   let finalPrice =
     activeSize === 0
       ? price
       : activeSize === 1
-      ? Math.round(price * 1.1)
-      : Math.round(price * 1.2);
+      ? Math.round(price * 1.3)
+      : Math.round(price * 1.7);
 
   if (activeType === 0) {
-    finalPrice -= 20;
+    finalPrice += 20;
   }
 
   const cartItem = useSelector((state: RootState) =>
@@ -101,7 +115,9 @@ const ShaurmaBlock = ({
         </div>
       </div>
       <div className="flex items-center justify-around w-full mt-4">
-        <h4 className="font-extrabold text-xl">от {finalPrice} ₽</h4>
+        <h4 className={`font-extrabold text-xl duration-400 ${scaleClass}`}>
+          от {finalPrice} ₽
+        </h4>
         <AddBtn onClickAdd={onClickAdd} addedCount={addedCount} />
       </div>
     </div>
