@@ -38,10 +38,10 @@ const ShaurmaBlockCart = ({
           <button
             disabled={count === 1}
             onClick={() => dispatch(minusItem(id))}
-            className={`border-3 border-red-400 p-2.5 rounded-full cursor-pointer transition-colors ${
+            className={`border-3 border-red-400 p-2.5 rounded-full transition-colors ${
               count === 1
                 ? "opacity-25"
-                : "group hover:bg-orange-400 active:translate-y-0.5"
+                : "group hover:bg-orange-400 active:translate-y-0.5 cursor-pointer"
             }`}
           >
             <svg

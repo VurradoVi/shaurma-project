@@ -2,12 +2,18 @@ import { Link, useLocation } from "react-router";
 import Search from "./Search";
 import { useSelector } from "react-redux";
 import { selectCart } from "../redux/slices/cartSlice";
+import { useEffect, useRef } from "react";
 
 const Header = () => {
   const { totalPrice, items } = useSelector(selectCart);
 
   const location = useLocation();
   const isCartPage = location.pathname === "/cart";
+
+  useEffect(() => {
+    const json = JSON.stringify(items);
+    localStorage.setItem("item", json);
+  }, [items]);
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
   return (
