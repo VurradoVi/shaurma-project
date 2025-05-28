@@ -1,5 +1,5 @@
 import { FC, memo, useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   setSelectedSort,
   Sort,

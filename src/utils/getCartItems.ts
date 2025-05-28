@@ -1,4 +1,4 @@
-import { calcTotalPrice } from "./CalcTotalPrice";
+import { calcTotalPrice } from "./calcTotalPrice";
 
 export const getCartItems = () => {
   const items = JSON.parse(localStorage.getItem("item") || "[]");

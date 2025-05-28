@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router";
 import Search from "./Search";
 import { useSelector } from "react-redux";
 import { selectCart } from "../redux/slices/cartSlice";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 const Header = () => {
   const { totalPrice, items } = useSelector(selectCart);
