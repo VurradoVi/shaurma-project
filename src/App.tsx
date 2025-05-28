@@ -23,7 +23,7 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
 
   return (
-    <div className="mx-6">
+    <div className="mx-6 max-[600px]:mx-2">
       <Container>
         <SearchContext.Provider value={{ searchValue, setSearchValue }}>
           <Header />
