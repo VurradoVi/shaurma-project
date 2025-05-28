@@ -25,16 +25,18 @@ const ShaurmaBlockCart = ({
   return (
     <div>
       <div className="flex items-center w-full border-t border-gray-200 pt-5 pb-5 ">
-        <div className="flex items-center gap-3.5 w-[50%]">
+        <div className="flex items-center gap-3.5 w-[50%] max-[500px]:flex-col ">
           <img width={70} height={30} src={imageUrl} alt="shaurma" />
           <div>
-            <h3 className="text-xl font-bold">{title}</h3>
-            <p className="text-lg opacity-60">
+            <h3 className="text-xl font-bold max-[500px]:text-center max-[500px]:text-base">
+              {title}
+            </h3>
+            <p className="text-lg opacity-60 max-[500px]:text-center max-[500px]:text-sm">
               {type}, {size}
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-3 w-[13%]">
+        <div className="flex items-center gap-3 w-[13%] max-[600px]:w-[20%] max-[500px]:flex-col">
           <button
             disabled={count === 1}
             onClick={() => dispatch(minusItem(id))}
@@ -80,7 +82,7 @@ const ShaurmaBlockCart = ({
             </svg>
           </button>
         </div>
-        <h3 className="font-bold text-xl w-[33%] text-center">
+        <h3 className="font-bold text-xl w-[30%] text-center">
           {price * count}p
         </h3>
         <button

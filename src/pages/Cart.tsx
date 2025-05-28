@@ -15,10 +15,10 @@ const Cart = () => {
     }
   };
   return (
-    <div className="max-w-4xl mx-auto h-[75vh] flex flex-col justify-between">
+    <div className="max-w-4xl mx-auto h-[75vh] max-[500px]:h-auto flex flex-col justify-between">
       {items.length > 0 ? (
         <div>
-          <div className="flex items-end justify-between mb-5.5">
+          <div className="flex items-center justify-between mb-5.5">
             <div className="flex items-center gap-2">
               <img src="./shop.svg" width={26} height={26} alt="cart" />
               <h1 className="text-3xl font-bold">Корзина</h1>
@@ -33,24 +33,24 @@ const Cart = () => {
               </svg>
               <button
                 onClick={ClickClearCart}
-                className="text-gray-400 cursor-pointer transition-colors duration-200 group-hover:text-red-600"
+                className="text-gray-400 cursor-pointer transition-colors duration-200 group-hover:text-red-600 max-[500px]:hidden"
               >
                 Очистить корзину
               </button>
             </div>
           </div>
-          <div className="overflow-auto max-h-[420px] h-full scroll-smooth duration-1000">
+          <div className="overflow-auto max-h-[420px] h-full scroll-smooth duration-1000 max-[500px]:overflow-y-scroll">
             {items.map((items) => (
               <ShaurmaBlockCart key={items.id} {...items} />
             ))}
           </div>
 
           <div className="mt-auto">
-            <div className="flex items-center justify-between mt-10">
-              <h3 className="text-xl">
+            <div className="flex items-center justify-between mt-10 gap-5">
+              <h3 className="text-xl max-[500px]:text-base">
                 Всего шаурмы: <strong>{totalCount} шт.</strong>
               </h3>
-              <h3 className="text-xl">
+              <h3 className="text-xl max-[500px]:text-base">
                 Сумма заказа:{" "}
                 <span className="text-red-500">{totalPrice}р.</span>
               </h3>
@@ -64,12 +64,14 @@ const Cart = () => {
                       src="./Path.svg"
                       alt="back"
                     />
-                    Вернуться назад
+                    Вернуться{" "}
+                    <span className="visible max-[600px]:hidden">назад</span>
                   </button>
                 </Link>
               </div>
-              <button className="bg-red-500 text-white px-5.5 py-3 rounded-3xl cursor-pointer transition duration-200  hover:bg-red-400">
-                Оплатить сейчас
+              <button className="bg-red-500  text-white px-5.5 py-3 rounded-3xl cursor-pointer transition duration-200  hover:bg-red-400">
+                Оплатить{" "}
+                <span className="visible max-[600px]:hidden">сейчас</span>
               </button>
             </div>
           </div>

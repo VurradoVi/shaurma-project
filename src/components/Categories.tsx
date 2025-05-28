@@ -10,8 +10,8 @@ const items = ["Все", "Мясные", "Вегетарианская", "Ост
 const Categories = React.memo(
   ({ categoryId, setActiveCategories }: CategoriesProps) => {
     return (
-      <div className="max-[800px]:overflow-auto max-[800px]:w-full">
-        <ul className="flex gap-3  text-nowrap">
+      <div className="max-[800px]:overflow-x-scroll max-[800px]:w-full">
+        <ul className="flex gap-3 text-nowrap max-[800px]:pb-2">
           {items.map((item, index) => (
             <li
               key={item}

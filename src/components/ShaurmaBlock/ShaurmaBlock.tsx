@@ -78,7 +78,7 @@ const ShaurmaBlock = ({
     <div className="flex flex-col items-center w-2xs ">
       <Link to={`/shaurma/${id}`}>
         <img
-          className="w-3xs group hover:scale-103 transition duration-400"
+          className="w-3xs group hover:scale-103 transition duration-400 max-[800px]:w-3xs"
           src={imageUrl}
           alt={title}
         />
