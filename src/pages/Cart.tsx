@@ -24,18 +24,19 @@ const Cart = () => {
               <h1 className="text-3xl font-bold">Корзина</h1>
             </div>
             <div className="flex items-center gap-1 group">
-              <svg
-                className="w-4 h-4 text-gray-400 transition-colors duration-200 group-hover:text-red-600"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
-              </svg>
               <button
                 onClick={ClickClearCart}
-                className="text-gray-400 cursor-pointer transition-colors duration-200 group-hover:text-red-600 max-[500px]:hidden"
+                className="flex items-center gap-1 text-gray-400 cursor-pointer transition-colors duration-200 group-hover:text-red-600"
               >
-                Очистить корзину
+                <svg
+                  className="w-4 h-4 text-gray-400 transition-colors duration-200 group-hover:text-red-600"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
+                </svg>
+
+                <span className="max-[500px]:hidden">Очистить корзину</span>
               </button>
             </div>
           </div>
