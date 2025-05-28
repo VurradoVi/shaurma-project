@@ -6,7 +6,6 @@ import AddBtn from "./AddBtn";
 import { RootState } from "../../redux/store";
 
 const typesCheese = ["с сыром", "без сыра"];
-const typesSize = ["small", "medium", "big"];
 
 type ShaurmaBlockProps = {
   id: string;
@@ -68,7 +67,7 @@ const ShaurmaBlock = ({
       imageUrl,
       price: finalPrice,
       type: typesCheese[activeType],
-      size: typesSize[activeSize],
+      size: sizes[activeSize],
       count: 0,
     };
     dispatch(addItem(item));
@@ -82,7 +81,7 @@ const ShaurmaBlock = ({
           src={imageUrl}
           alt={title}
         />
-        <h4 className="font-extrabold text-2xl mb-5">{title}</h4>
+        <h4 className="font-extrabold text-2xl mb-5 text-center">{title}</h4>
       </Link>
       <div className="bg-gray-200 rounded-xl w-70">
         <div className="font-bold">

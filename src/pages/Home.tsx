@@ -44,7 +44,6 @@ const Home = () => {
 
     window.scrollTo(0, 0);
   };
-
   useEffect(() => {
     getShaurma();
   }, [categoryId, sort, searchValue, currentPage]);
