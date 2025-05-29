@@ -40,7 +40,7 @@ const FullShaurma = () => {
         src={shaurma.imageUrl}
         alt={shaurma.title}
       />
-      <h2 className="text-4xl font-bold">{shaurma.price} ₽</h2>
+      <h2 className="text-4xl font-bold">от {shaurma.price} ₽</h2>
       <p className="text-2xl text-center max-w-2xl mt-4">
         {shaurma.description}
       </p>

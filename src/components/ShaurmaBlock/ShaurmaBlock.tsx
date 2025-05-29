@@ -81,7 +81,9 @@ const ShaurmaBlock = ({
           src={imageUrl}
           alt={title}
         />
-        <h4 className="font-extrabold text-2xl mb-5 text-center">{title}</h4>
+        <h4 className="font-extrabold text-2xl mb-5 text-center whitespace-nowrap">
+          {title}
+        </h4>
       </Link>
       <div className="bg-gray-200 rounded-xl w-70">
         <div className="font-bold">

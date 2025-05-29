@@ -5,7 +5,7 @@ type CategoriesProps = {
   setActiveCategories: (i: number) => void;
 };
 
-const items = ["Все", "Мясные", "Вегетарианская", "Острые", "В лаваше"];
+const items = ["Все", "Мясные", "Вегетарианская", "Острые", "В коробке"];
 
 const Categories = React.memo(
   ({ categoryId, setActiveCategories }: CategoriesProps) => {

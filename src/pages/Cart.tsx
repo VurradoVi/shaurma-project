@@ -47,7 +47,7 @@ const Cart = () => {
           </div>
 
           <div className="mt-auto">
-            <div className="flex items-center justify-between mt-10 gap-5">
+            <div className="flex items-center justify-between mt-10 gap-3 whitespace-nowrap">
               <h3 className="text-xl max-[500px]:text-base">
                 Всего шаурмы: <strong>{totalCount} шт.</strong>
               </h3>
@@ -70,7 +70,10 @@ const Cart = () => {
                   </button>
                 </Link>
               </div>
-              <button className="bg-red-500  text-white px-5.5 py-3 rounded-3xl cursor-pointer transition duration-200  hover:bg-red-400">
+              <button
+                onClick={() => alert("Вы не зарегистрированы")}
+                className="bg-red-500  text-white px-5.5 py-3 rounded-3xl cursor-pointer transition duration-200  hover:bg-red-400"
+              >
                 Оплатить{" "}
                 <span className="visible max-[600px]:hidden">сейчас</span>
               </button>
